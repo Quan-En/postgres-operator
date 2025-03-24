@@ -1,3 +1,8 @@
+# Pull from `Helm`
+name: postgres-operator-charts
+url: https://opensource.zalando.com/postgres-operator/charts/postgres-operator
+Chart version: `1.14.0`
+
 # Deploy `postgres-operator`
 NOTICE: It's **ONLY** deploy `postgres-operator` (without postgresql DB)
 
