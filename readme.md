@@ -27,7 +27,7 @@ configConnectionPooler:
 
 ## Use the following command to see yaml file:
 ```bash
-helm template myrls . -f values.yaml -f custom_values.yaml --output-dir ./output
+helm template myrls . -f values.yaml -f custom_values.yaml --output-dir ./output -n fdcrpa
 ```
 
 ## Apply to k8s:
