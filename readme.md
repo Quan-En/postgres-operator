@@ -43,3 +43,8 @@ kubectl apply -f ./output/postgres-operator/templates
 
 # 2. Deploy manifest postgresql example
 Ref: https://github.com/zalando/postgres-operator/blob/master/manifests/minimal-postgres-manifest.yaml
+
+## Example 1: minimal postgres manifest
+```bash
+kubectl apply -f ./example/minimal-postgres-manifest.yaml
+```
