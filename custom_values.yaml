@@ -1,3 +1,9 @@
+image:
+  registry: ghcr.io
+  repository: zalando/postgres-operator
+  tag: v1.14.0
+  pullPolicy: "IfNotPresent"
+
 # general configuration parameters
 configGeneral:
   # Spilo docker image
@@ -14,7 +20,7 @@ configLogicalBackup:
   # S3 bucket to store backup results
   logical_backup_s3_bucket: "main"
   # S3 Secret Access Key
-  logical_backup_s3_secret_access_key: "abc123abc123"
+  logical_backup_s3_secret_access_key: "fdcrpafdcrpa"
   # backup schedule in the cron format
   logical_backup_schedule: "30 00 * * *" # daily at 00:30
   # S3 server side encryption
@@ -25,9 +31,28 @@ configConnectionPooler:
   # docker image
   connection_pooler_image: "registry.opensource.zalan.do/acid/pgbouncer:master-32"
 
+
+podServiceAccount:
+  # The name of the ServiceAccount to be used by postgres cluster pods
+  # If not set a name is generated using the fullname template and "-pod" suffix
+  name: "postgres-pod"
+
 configKubernetes:
   # operator watches for postgres objects in the given namespace
-  watched_namespace: "default"
+  watched_namespace: "fdcrpa"
+  # role binding definition as JSON/YAML string to be used by pod service account
+  pod_service_account_role_binding_definition: |
+    apiVersion: rbac.authorization.k8s.io/v1
+    kind: RoleBinding
+    metadata:
+      name: postgres-pod
+    roleRef:
+      apiGroup: rbac.authorization.k8s.io
+      kind: Role
+      name: postgres-pod
+    subjects:
+    - kind: ServiceAccount
+      name: postgres-pod
 
 # configure resource requests for the Postgres pods
 configPostgresPodResources:
