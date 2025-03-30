@@ -2,6 +2,7 @@ apiVersion: "acid.zalan.do/v1"
 kind: postgresql
 metadata:
   name: acid-minimal-cluster
+  namespace: fdcrpa
 spec:
   teamId: "acid"
   volume:
@@ -19,6 +20,6 @@ spec:
   postgresql:
     version: "16"
   enableLogicalBackup: true
-  logicalBackupSchedule: "30 00 * * *"
+  logicalBackupSchedule: "*/5 * * * *"
   # connectionPooler:
   #   numberOfInstances: 1
