@@ -21,6 +21,12 @@ rules:
   - patch
   - update
 {{- end }}
+{{- if toString .Values.configGeneral.enable_crd_registration | eq "true" }}
+  resourceNames:
+  - operatorconfigurations.acid.zalan.do
+  - postgresqls.acid.zalan.do
+  - postgresteams.acid.zalan.do
+{{- end }}
 # to check nodes for node readiness label
 - apiGroups:
   - ""
