@@ -544,3 +544,10 @@ controllerID:
   # The name of the controller ID to use.
   # If not set and create is true, a name is generated using the fullname template
   name:
+
+# customConfigMap is a list of custom config maps to be mounted in the operator pod
+# The config maps must be created in the same namespace as the operator
+customConfigMap:
+  enabled: false
+  name: custom-config
+  data: {}

@@ -1,0 +1,14 @@
+{{- if .Values.customConfigMap.enabled }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: pgo-custom-configmap
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/name: {{ template "postgres-operator.name" . }}
+    helm.sh/chart: {{ template "postgres-operator.chart" . }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+data:
+{{- include "flattenValuesForConfigMap" .Values.customConfigMap.data | indent 2 }}
+{{- end }}
