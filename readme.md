@@ -77,6 +77,11 @@ Use the following command to render the Helm chart templates into YAML files:
 helm template <RELEASE-NAME> . -f values.yaml -f custom_values.yaml --output-dir ./output -n <YOUR-NAMESPACE>
 ```
 
+example:
+```bash
+helm template myrls . -f values.yaml -f custom_values.yaml --output-dir ./output -n fdcrpa
+```
+
 ## Apply to Kubernetes
 
 1. Apply the Custom Resource Definitions (CRDs):

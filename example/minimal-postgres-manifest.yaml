@@ -15,11 +15,9 @@ spec:
     foo_user: []  # role for application foo
   databases:
     foo: zalando  # dbname: owner
-  preparedDatabases:
-    bar: {}
   postgresql:
     version: "16"
   enableLogicalBackup: true
-  logicalBackupSchedule: "*/5 * * * *"
+  logicalBackupSchedule: "30 0 * * *" # every day at 00:30
   # connectionPooler:
   #   numberOfInstances: 1
