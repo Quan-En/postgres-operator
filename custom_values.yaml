@@ -64,3 +64,26 @@ configPostgresPodResources:
   default_memory_limit: 500Mi
   # memory request value for the postgres containers
   default_memory_request: 100Mi
+
+# configure interaction with non-Kubernetes objects from AWS or GCP
+configAwsOrGcp:
+  # S3 bucket to use for shipping postgres daily logs
+  # log_s3_bucket: ""
+
+  # S3 bucket to use for shipping WAL segments with WAL-E
+  wal_s3_bucket: "main"
+
+# customConfigMap is a list of custom config maps to be mounted in the operator pod
+# The config maps must be created in the same namespace as the operator
+customConfigMap:
+  enabled: true
+  data:
+    BACKUP_SCHEDULE: "0 */2 * * * *" # every 2 hours
+    BACKUP_NUM_TO_RETAIN: "5"
+    USE_WALG_BACKUP: "true"
+    USE_WALG_RESTORE: "false"
+    AWS_ENDPOINT: "http://my-rls-minio.fdcrpa.svc.cluster.local:9000"
+    AWS_ACCESS_KEY_ID: "admin"
+    AWS_SECRET_ACCESS_KEY: "fdcrpafdcrpa"
+    WALG_DISABLE_S3_SSE: "true"
+    AWS_S3_FORCE_PATH_STYLE: "true"
